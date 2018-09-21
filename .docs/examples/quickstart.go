@@ -9,18 +9,51 @@ import (
 type Argument string
 
 func FunctionToCall(arg1 Argument, arg2 *Argument) error {
-	if err := verify.All(
-		verify.That(string(arg1) != "", "arg 1 can't be empty"),
-		verify.That(arg2 != nil, "arg2 can't be nil"),
-		verify.That(verify.ValueOf(arg2) == Argument("hello world"), "arg2 must be \"hello world\""),
-	); err != nil {
+	verify.That(string(arg1) != "", "arg 1 can't be empty")
+	verify.That(arg2 != nil, "arg2 can't be nil")
+	if err := verify.Error(); err != nil {
 		return err
+	}
+	verify.That(*arg2 == Argument("hello world"), "arg2 must be \"hello world\"")
+	if verify.Error() != nil {
+		return verify.Error()
 	}
 
 	// perform your function here
 
 	return nil
 }
+
+// func FunctionToCall(arg1 Argument, arg2 *Argument) error {
+// 	err := verify.That(string(arg1) != "", "arg 1 can't be empty")
+// 	err = verify.That(arg2 != nil, "arg2 can't be nil")
+// 	if err != nil {
+// 		return err
+// 	}
+
+// 	err = verify.That(*arg2 == Argument("hello world"), "arg2 must be \"hello world\"")
+// 	if err != nil {
+// 		return err
+// 	}
+
+// 	// perform your function here
+
+// 	return nil
+// }
+
+// func FunctionToCall(arg1 Argument, arg2 *Argument) error {
+// 	if err := verify.All(
+// 		verify.That(string(arg1) != "", "arg 1 can't be empty"),
+// 		verify.That(arg2 != nil, "arg2 can't be nil"),
+// 		verify.That(*arg2 == Argument("hello world"), "arg2 must be \"hello world\""),
+// 	); err != nil {
+// 		return err
+// 	}
+
+// 	// perform your function here
+
+// 	return nil
+// }
 
 func main() {
 	arg1 := Argument("hola mundo")

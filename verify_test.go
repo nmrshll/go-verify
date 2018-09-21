@@ -42,7 +42,7 @@ func TestAll(t *testing.T) {
 		functionToCall := func(stringPointerArg *string) error {
 			if err := All(
 				That(stringPointerArg != nil, "stringPointerArg can't be nil"),
-				That(StringValueOf(stringPointerArg) != "", "stringPointerArg can't be pointer to empty string"),
+				That(valueOfStringPointer(stringPointerArg) != "", "stringPointerArg can't be pointer to empty string"),
 			); err != nil {
 				return err
 			}
@@ -71,3 +71,9 @@ func TestAll(t *testing.T) {
 }
 
 func pointerToString(str string) *string { return &str }
+func valueOfStringPointer(strp *string) string {
+	if strp != nil {
+		return *strp
+	}
+	return ""
+}
