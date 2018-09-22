@@ -8,6 +8,8 @@ import (
 
 type Argument string
 
+func doSomething(arg1 Argument, arg2 *Argument) {}
+
 func FunctionToCall(arg1 Argument, arg2 *Argument) error {
 	verify.That(string(arg1) != "", "arg 1 can't be empty")
 	verify.That(arg2 != nil, "arg2 can't be nil")
@@ -15,11 +17,12 @@ func FunctionToCall(arg1 Argument, arg2 *Argument) error {
 		return err
 	}
 	verify.That(*arg2 == Argument("hello world"), "arg2 must be \"hello world\"")
-	if verify.Error() != nil {
-		return verify.Error()
+	if err := verify.Error(); err != nil {
+		return err
 	}
 
 	// perform your function here
+	doSomething(arg1, arg2)
 
 	return nil
 }
