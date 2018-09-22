@@ -47,27 +47,6 @@ func main() {
 }
 ```
 
-```go
-func FunctionToCall(arg1 Argument, arg2 *Argument) error {
-	if err := verify.All(
-		verify.That(string(arg1) != "", "arg 1 can't be empty"),
-		verify.That(arg2 != nil, "arg2 can't be nil"),
-		verify.That(*arg2 == Argument("hello world"), "arg2 must be \"hello world\""),
-	); err != nil {
-		return err
-	}
-}
-
-func main() {
-	arg1 := Argument("hola mundo")
-	arg2 := Argument("hola mundo")
-	err := FunctionToCall(arg1, &arg2)
-	if err != nil {
-		log.Fatal(err)
-	}
-}
-```
-
 #### Gotchas
 - Always assert that a pointer is not nil before asserting anything else about its value
 
