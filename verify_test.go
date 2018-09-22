@@ -9,10 +9,7 @@ func TestAll(t *testing.T) {
 		functionToCall := func(stringArg string, intArg int) error {
 			That(stringArg != "", "stringArg can't be empty")
 			That(intArg != 0, "intArg can't be nil")
-			if err := Error(); err != nil {
-				return err
-			}
-			return nil
+			return Error()
 		}
 		type args struct {
 			stringArg string
@@ -41,10 +38,7 @@ func TestAll(t *testing.T) {
 		functionToCall := func(stringPointerArg *string) error {
 			That(stringPointerArg != nil, "stringPointerArg can't be nil")
 			That(valueOfStringPointer(stringPointerArg) != "", "stringPointerArg can't be pointer to empty string")
-			if err := Error(); err != nil {
-				return err
-			}
-			return nil
+			return Error()
 		}
 		type args struct {
 			stringPointerArg *string

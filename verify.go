@@ -23,6 +23,7 @@ func verifierForWrappingPC(pc uintptr) (_ *verifier, upFunctionLocationUint uint
 	return verifiers[upFunctionLocationUint], upFunctionLocationUint
 }
 
+// That performs a verification
 func That(condition bool, errorFormat string, args ...interface{}) {
 	pc, _, _, ok := runtime.Caller(1)
 	if !ok {
@@ -35,6 +36,8 @@ func That(condition bool, errorFormat string, args ...interface{}) {
 	}
 }
 
+// Error returns the verifier error and triggers cleanup of the verifier.
+// The cleanup happens after enough time to return the error (5 seconds)
 func Error() error {
 	pc, _, _, ok := runtime.Caller(1)
 	if !ok {
@@ -44,7 +47,7 @@ func Error() error {
 
 	// cleanup in map of verifiers
 	go func() {
-		time.Sleep(1 * time.Second)
+		time.Sleep(10 * time.Second)
 		delete(verifiers, upFunctionLocationUint)
 	}()
 

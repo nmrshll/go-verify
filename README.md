@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.com/nmrshll/go-verify.svg?branch=master)](https://travis-ci.com/nmrshll/go-verify)
+[![Go Report Card](https://goreportcard.com/badge/github.com/nmrshll/go-verify)](https://goreportcard.com/report/github.com/nmrshll/go-verify)
+
 # go-verify
 Defensive programming utilities for Go
 
@@ -69,4 +72,4 @@ func main() {
 - Always assert that a pointer is not nil before asserting anything else about its value
 
 ### License
-[MIT](.docs/LICENSE)
+[MIT](./LICENSE)
