@@ -18,7 +18,7 @@ Having learned recently that this concept is actually a thing and that it's call
 
 Install with `go get github.com/nmrshll/go-verify`
 
-Then use this way:
+Then use this way:  
 [embedmd]:# (.docs/examples/quickstart.go /func FunctionToCall/ $)
 ```go
 func FunctionToCall(arg1 Argument, arg2 *Argument) error {
