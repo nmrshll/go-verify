@@ -44,7 +44,7 @@ func Error() error {
 
 	// cleanup in map of verifiers
 	go func() {
-		time.Sleep(10 * time.Second)
+		time.Sleep(1 * time.Second)
 		delete(verifiers, upFunctionLocationUint)
 	}()
 

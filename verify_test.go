@@ -7,10 +7,9 @@ import (
 func TestAll(t *testing.T) {
 	t.Run("pass by value parameters", func(t *testing.T) {
 		functionToCall := func(stringArg string, intArg int) error {
-			if err := All(
-				That(stringArg != "", "stringArg can't be empty"),
-				That(intArg != 0, "intArg can't be nil"),
-			); err != nil {
+			That(stringArg != "", "stringArg can't be empty")
+			That(intArg != 0, "intArg can't be nil")
+			if err := Error(); err != nil {
 				return err
 			}
 			return nil
@@ -40,10 +39,9 @@ func TestAll(t *testing.T) {
 
 	t.Run("pointer parameters", func(t *testing.T) {
 		functionToCall := func(stringPointerArg *string) error {
-			if err := All(
-				That(stringPointerArg != nil, "stringPointerArg can't be nil"),
-				That(valueOfStringPointer(stringPointerArg) != "", "stringPointerArg can't be pointer to empty string"),
-			); err != nil {
+			That(stringPointerArg != nil, "stringPointerArg can't be nil")
+			That(valueOfStringPointer(stringPointerArg) != "", "stringPointerArg can't be pointer to empty string")
+			if err := Error(); err != nil {
 				return err
 			}
 			return nil
